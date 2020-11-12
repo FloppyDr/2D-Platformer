@@ -6,33 +6,13 @@ using UnityEngine.UI;
 
 public class CollectedCoins : MonoBehaviour
 {
-    [SerializeField] private Text text;
+    [SerializeField] private Text _amountOfCoins;
 
-    private AudioSource _coinSound;
-    private Coin[] coins;
     private int _collectedCoins;
 
-    private void OnEnable()
-    {
-        coins = gameObject.GetComponentsInChildren<Coin>();
-
-        foreach (var coin in coins)
-        {
-            coin.Collected += OnCoinCollected;
-        }
-    }
-
-    private void OnDisable()
-    {
-        foreach (var coin in coins)
-        {
-            coin.Collected -= OnCoinCollected;
-        }
-    }
-
-    private void OnCoinCollected()
+    public void AddCoin()
     {
         _collectedCoins++;
-        text.text = _collectedCoins.ToString();
+        _amountOfCoins.text = _collectedCoins.ToString();
     }
 }
