@@ -9,7 +9,7 @@ public class SpriteFlipper : MonoBehaviour
 {
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
-    private float _horizontalMove;
+    private float _moveDirection;
     private bool _isFacingLeft = false;
 
     private void Start()
@@ -20,18 +20,18 @@ public class SpriteFlipper : MonoBehaviour
 
     private void Update()
     {
-        _horizontalMove = Input.GetAxisRaw("Horizontal");
-        _animator.SetFloat("Speed", Mathf.Abs(_horizontalMove));
+        _moveDirection = Input.GetAxisRaw("Horizontal");
+        _animator.SetFloat("Speed", Mathf.Abs(_moveDirection));
         FlipLook();
     }
 
     private void FlipLook()
     {
-        if (_horizontalMove > 0 && _isFacingLeft)
+        if (_moveDirection > 0 && _isFacingLeft)
         {
             Flip();
         }
-        else if (_horizontalMove < 0 && !_isFacingLeft)
+        else if (_moveDirection < 0 && !_isFacingLeft)
         {
             Flip();
         }
